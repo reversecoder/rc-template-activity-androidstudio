@@ -1,1 +1,1 @@
-# Test App for Electric Vehicle
+# Project template for normal activity
