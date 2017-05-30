@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    maven {
+        url "https://raw.github.com/reversecoder/rc-permission-androidstudio/snapshots"
+    }
+    maven {
+        url "https://raw.github.com/reversecoder/rc-librarydemo-androidstudio/snapshots"
+    }
+}
+
+android {
+    compileSdkVersion appCompileSdkVersion
+    buildToolsVersion appBuildToolsVersion
+    defaultConfig {
+        applicationId "com.reversecoder.projecttemplate"
+        minSdkVersion appMinSdkVersion
+        targetSdkVersion appTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled false
+            debuggable false
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$supportlibraryVersion"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile 'com.reversecoder.permission:rc-permission:1.0.0-SNAPSHOT'
+    compile 'com.reversecoder.library:rc-library:1.0.1-SNAPSHOT'
+
+    testCompile 'junit:junit:4.12'
+}
